@@ -29,3 +29,59 @@
 	- Prompt user to play again -> Jump to Begin Game function.
 */
 
+//Array of available words
+var words = ['Sarah', 'Lane', 'Drew', 'Chicago'];
+var uniqueLetters = [];
+var selectedWordArray = [];
+var playing = true;
+//Number of correct and incorrect guesses remaining.
+var userGuess;
+var correctGuesses;
+var incorrectGuesses = 10;
+
+//This function runs when the user clicks start game or play again
+var beginGame = function(){
+	//The user begins playing the game.
+	playing = true;
+	//Select a random word from the words array
+	var selectedWord = words[Math.floor(Math.random() * words.length)];
+	//Convert all the letters to Uppercase
+	selectedWord = selectedWord.toUpperCase();
+	//Store selected word into an array
+	var selectedWordArray = selectedWord.split("");
+	//Store Unique Letters in array
+	for ( var i = 0; i < selectedWordArray.length; i++ ) {
+		if ( uniqueLetters.indexOf(selectedWordArray[i]) == -1 ) {
+			uniqueLetters[uniqueLetters.length] = selectedWordArray[i];
+		}
+	}
+	//Set number of correctGuesses  for winning purposes
+	correctGuesses = uniqueLetters.length;
+
+	//POPULATE VISUAL CUES BASED ON selectedWordArray.length
+}
+
+//This function runs when the user presses a key
+var userGuessLogic = function(letter){
+	console.log('userGuessLogic: ' + letter);
+}
+
+beginGame();
+
+document.onkeyup = function(event) {
+	//If user is playing and key press is a valid letter then store letter and run urserGuessLogic()
+	if (playing === true && event.keyCode >= 65 && event.keyCode <= 90) {
+		userGuess = event.key.toUpperCase();
+		userGuessLogic(userGuess);
+	}
+	else {
+		//Displays message that the user already guessed this letter.
+		console.log("That's not a letter dummy.")
+	}
+       
+};
+
+
+
+
+
