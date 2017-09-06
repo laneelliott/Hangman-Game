@@ -30,14 +30,15 @@
 */
 
 //Array of available words
-var words = ['Sarah', 'Lane', 'Drew', 'Chicago'];
+var words = ['Sarah', 'Lane', 'Drew', 'Chicago Illinois'];
 var uniqueLetters = [];
 var selectedWordArray = [];
-var playing = true;
+var playing = false;
 //Number of correct and incorrect guesses remaining.
 var userGuess;
 var correctGuesses;
 var incorrectGuesses = 10;
+var guessedLetters = [];
 
 //This function runs when the user clicks start game or play again
 var beginGame = function(){
@@ -53,6 +54,7 @@ var beginGame = function(){
 	for ( var i = 0; i < selectedWordArray.length; i++ ) {
 		if ( uniqueLetters.indexOf(selectedWordArray[i]) == -1 ) {
 			uniqueLetters[uniqueLetters.length] = selectedWordArray[i];
+			console.log(uniqueLetters);
 		}
 	}
 	//Set number of correctGuesses  for winning purposes
@@ -61,12 +63,38 @@ var beginGame = function(){
 	//POPULATE VISUAL CUES BASED ON selectedWordArray.length
 }
 
+//This function takes a unique guessed letter and determines if it is a correct or incorrect guess.
+var correctOrIncorrect = function(letter){
+	if ( uniqueLetters.indexOf(letter) !== -1 ) {
+		correctGuesses -= 1;
+		if (correctGuesses == 0){
+			playing = false;
+			console.log("congrats you won the game.");
+		}
+	} else {
+		incorrectGuesses -= 1;
+		console.log(incorrectGuesses);
+		if (incorrectGuesses == 0) {
+			console.log("sorry you lost the game.")
+			playing = false;
+		}
+	}
+}
+
 //This function runs when the user presses a key
 var userGuessLogic = function(letter){
-	console.log('userGuessLogic: ' + letter);
+	//Check to see if the user already guessed this letter in the guessedLetters array.
+	if ( guessedLetters.indexOf(letter) == -1 ) {
+		guessedLetters[guessedLetters.length] = letter;
+		correctOrIncorrect(letter);
+	} else {
+	//Display a message if the letter was found in guessedLetters
+		console.log("You already guessed that letter.")
+	}
 }
 
 beginGame();
+
 
 document.onkeyup = function(event) {
 	//If user is playing and key press is a valid letter then store letter and run urserGuessLogic()
