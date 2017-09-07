@@ -52,7 +52,7 @@ var beginGame = function(){
 	var selectedWordArray = selectedWord.split("");
 	//Store Unique Letters in array
 	for ( var i = 0; i < selectedWordArray.length; i++ ) {
-		if ( uniqueLetters.indexOf(selectedWordArray[i]) == -1 ) {
+		if ( uniqueLetters.indexOf(selectedWordArray[i]) == -1 && selectedWord[i] !== " " ) {
 			uniqueLetters[uniqueLetters.length] = selectedWordArray[i];
 			console.log(uniqueLetters);
 		}
