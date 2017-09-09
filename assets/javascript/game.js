@@ -29,8 +29,10 @@
 	- Prompt user to play again -> Jump to Begin Game function.
 */
 
+//Global Variables
+//*********************************************
 //Array of available words
-var words = ['Sarah', 'Lane', 'Drew', 'Chicago Illinois'];
+var words = ['Obiwan Kenobi', 'Anakin Skywalker', 'Luke Skywalker'];
 //Array that holds all unique letters in chosen word
 var uniqueLetters = [];
 //Array that holds the letters and order of the selected Word
@@ -38,12 +40,20 @@ var selectedWordArray = [];
 var playing = false;
 //Number of correct and incorrect guesses remaining.
 var correctGuesses;
-var incorrectGuesses = 10;
+var incorrectGuesses = 5;
+//Wins, Losses, and Games Played variables
+var wins = 0;
+var losses = 0;
+var gamesplayed = 0;
 //Variable that stores the users guess
 var userGuess;
 //Array that holds all guessed letters so they can't be guessed twice.
 var guessedLetters = [];
 
+
+
+//Game Functions
+//*********************************************
 
 //This function runs when the user clicks start game or play again
 function beginGame(){
@@ -59,9 +69,21 @@ function beginGame(){
 	//Convert all the letters to Uppercase
 	selectedWord = selectedWord.toUpperCase();
 	//Store selected word into an array
-	var selectedWordArray = selectedWord.split("");
+	selectedWordArray = selectedWord.split("");
 	//Store Unique Letters in array
 	for ( var i = 0; i < selectedWordArray.length; i++ ) {
+		//Populate the letter-display div
+		var parentH1 = document.getElementById('letter-display-text');
+		var childSpan = document.createElement('span');
+		childSpan.innerHTML = '&nbsp;';
+		parentH1.appendChild(childSpan);
+		//Add a spacing class in the letter has no value.
+		if(selectedWordArray[i] == " "){
+			childSpan = parentH1.lastChild;
+			childSpan.className = "space";
+		}
+
+		//Build an array of guessable letters
 		if ( uniqueLetters.indexOf(selectedWordArray[i]) == -1 && selectedWord[i] !== " " ) {
 			uniqueLetters[uniqueLetters.length] = selectedWordArray[i];
 			//console.log(uniqueLetters);
@@ -73,20 +95,70 @@ function beginGame(){
 	//POPULATE VISUAL CUES BASED ON selectedWordArray.length
 }
 
+//This funtion is displays the correct letters guessed.
+function displayCorrectLetter() {
+	var parentH1 = document.getElementById('letter-display-text');
+	//Remove all child spans of parentH1
+	while (parentH1.firstChild) {
+    	parentH1.removeChild(parentH1.firstChild);
+	}
+	for ( var i = 0; i < selectedWordArray.length; i++ ) {
+		var childSpan = document.createElement('span');
+		for(var j=0; j< guessedLetters.length; j++){
+			//Populate the letter-display div if letters match.
+			if(selectedWordArray[i] == guessedLetters[j]) {
+				childSpan.innerHTML = guessedLetters[j];
+			}
+		}
+		//Populate the letter-display div with a space if letters don't match.
+		if(childSpan.innerHTML == ""){
+			childSpan.innerHTML = '&nbsp;';
+		}
+		parentH1.appendChild(childSpan);
+		//Add a spacing class in the letter has no value.
+		if(selectedWordArray[i] == " "){
+			childSpan = parentH1.lastChild;
+			childSpan.className = "space";
+		}
+	}
+}
+
+//Change the opacity of guessed letters in the alphabet display.
+function displayGuesses(letter) {
+	var newguess = document.getElementById(letter.toLowerCase());
+	newguess.style.opacity = 1;
+}
+
+//Updates the wins, losses, and games played display
+function updateStats() {
+	document.getElementById('wins').innerHTML = wins;
+	document.getElementById('losses').innerHTML = losses;
+	document.getElementById('gamesplayed').innerHTML = wins + losses;
+}
+
 //This function takes a unique guessed letter and determines if it is a correct or incorrect guess.
 function correctOrIncorrect(letter){
 	if ( uniqueLetters.indexOf(letter) !== -1 ) {
 		correctGuesses -= 1;
 		console.log(letter + " is correct.");
+		displayCorrectLetter();
+		displayGuesses(letter);
+		console.log("after correct");
 		if (correctGuesses == 0){
 			playing = false;
 			console.log("congrats you won the game.");
+			wins++;
+			updateStats();
 		}
 	} else {
 		incorrectGuesses -= 1;
 		console.log(letter + " is NOT correct.");
-		if (incorrectGuesses == 0) {
-			console.log("sorry you lost the game.")
+		displayGuesses(letter);
+		if (incorrectGuesses == 0){
+			console.log("sorry you lost the game.");
+			losses++;
+			updateStats();
+
 			playing = false;
 		}
 	}
@@ -106,8 +178,10 @@ function userGuessLogic(letter){
 }
 
 function endGame(){
-	
+
 }
+
+//
 
 beginGame();
 

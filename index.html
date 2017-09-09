@@ -20,20 +20,40 @@
 				
 			</div> <!-- end col-sm-3 lightsaber-right --> 
 
-			<div class="col-sm-6" style="border: 1px solid red">
+			<div class="col-sm-6">
 				<div class="row">
 					<div class="col-sm-12 text-center letter-display">
-						<h1>
-							<span>_</span> <span>_</span> <span>_</span> <span>T</span> <span>_</span> <span>_</span> <span>&nbsp;</span> <span>_</span> <span>_</span> <span>_</span>
+						<h1 id="letter-display-text">
+							<!-- these will be deleted and dynamically replaced using js -->
 						</h1>
-					</div> <!-- end col-sm-12 -->
+					</div> <!-- end col-sm-12 letter-display -->
 				</div> <!-- end row -->
 				<div class="row">
 					<div class="col-sm-12 alphabet text-center">
 						<h1> 
-							<span>A</span> <span>B</span> <span>C</span> <span>D</span> <span>E</span> <span>F</span> <span>G</span> <span>H</span> <span>I</span> <span>J</span> <span>K</span> <span>L</span> <span>M</span> <span>N</span> <span>O</span> <span>P</span> <span>Q</span> <span>R</span> <span>S</span> <span>T</span> <span>U</span> <span>V</span> <span>W</span> <span>X</span> <span>Y</span> <span>Z</span>
+							<span id="a">A</span> <span id="b">B</span> <span id="c">C</span> <span id="d">D</span> <span id="e">E</span> <span id="f">F</span> <span id="g">G</span> <span id="h">H</span> <span id="i">I</span> <span id="j">J</span> <span id="k">K</span> <span id="l">L</span> <span id="m">M</span> <span id="n">N</span> <span id="o">O</span> <span id="p">P</span> <span id="q">Q</span> <span id="r">R</span> <span id="s">S</span> <span id="t">T</span> <span id="u">U</span> <span id="v">V</span> <span id="w">W</span> <span id="x">X</span> <span id="y">Y</span> <span id="z">Z</span>
 						</h1>
-					</div> <!-- end col-sm-12 -->
+					</div> <!-- end col-sm-12 alphabet-->
+				</div> <!-- end row -->
+				<div class="row">
+					<div class="col-sm-12 score-container">
+						<div class="fluid-container">
+							<div class="row">
+								<div class="col-xs-4 text-center">
+									<h3>WINS</h3>
+									<h1 id="wins">0</h1>
+								</div> <!-- end col-xs-4 -->
+								<div class="col-xs-4  text-center">
+									<h3>GAMES</h3>
+									<h1 id="gamesplayed">0</h1>
+								</div> <!-- end col-xs-4 -->
+								<div class="col-xs-4 text-center">
+									<h3>LOSSES</h3>
+									<h1 id="losses">0</h1>
+								</div> <!-- end col-xs-4 -->
+							</div> <!-- end row -->
+						</div> <!-- end container -->
+					</div> <!-- end col-sm-12 score-container -->
 				</div> <!-- end row -->
 			</div> <!-- end col-sm-6 main content -->
 				
