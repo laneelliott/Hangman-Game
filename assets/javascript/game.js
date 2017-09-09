@@ -31,17 +31,27 @@
 
 //Array of available words
 var words = ['Sarah', 'Lane', 'Drew', 'Chicago Illinois'];
+//Array that holds all unique letters in chosen word
 var uniqueLetters = [];
+//Array that holds the letters and order of the selected Word
 var selectedWordArray = [];
 var playing = false;
 //Number of correct and incorrect guesses remaining.
-var userGuess;
 var correctGuesses;
 var incorrectGuesses = 10;
+//Variable that stores the users guess
+var userGuess;
+//Array that holds all guessed letters so they can't be guessed twice.
 var guessedLetters = [];
 
+
 //This function runs when the user clicks start game or play again
-var beginGame = function(){
+function beginGame(){
+	//Resets game variables
+	uniqueLetters = [];
+	selectedWordArray = [];
+	incorrectGuesses = 10;
+	guessedLetters = [];
 	//The user begins playing the game.
 	playing = true;
 	//Select a random word from the words array
@@ -54,7 +64,7 @@ var beginGame = function(){
 	for ( var i = 0; i < selectedWordArray.length; i++ ) {
 		if ( uniqueLetters.indexOf(selectedWordArray[i]) == -1 && selectedWord[i] !== " " ) {
 			uniqueLetters[uniqueLetters.length] = selectedWordArray[i];
-			console.log(uniqueLetters);
+			//console.log(uniqueLetters);
 		}
 	}
 	//Set number of correctGuesses  for winning purposes
@@ -64,25 +74,27 @@ var beginGame = function(){
 }
 
 //This function takes a unique guessed letter and determines if it is a correct or incorrect guess.
-var correctOrIncorrect = function(letter){
+function correctOrIncorrect(letter){
 	if ( uniqueLetters.indexOf(letter) !== -1 ) {
 		correctGuesses -= 1;
+		console.log(letter + " is correct.");
 		if (correctGuesses == 0){
 			playing = false;
 			console.log("congrats you won the game.");
 		}
 	} else {
 		incorrectGuesses -= 1;
-		console.log(incorrectGuesses);
+		console.log(letter + " is NOT correct.");
 		if (incorrectGuesses == 0) {
 			console.log("sorry you lost the game.")
 			playing = false;
 		}
 	}
+	console.log('guesses remaining: ' + incorrectGuesses + '  letters remaining: ' + correctGuesses);
 }
 
 //This function runs when the user presses a key
-var userGuessLogic = function(letter){
+function userGuessLogic(letter){
 	//Check to see if the user already guessed this letter in the guessedLetters array.
 	if ( guessedLetters.indexOf(letter) == -1 ) {
 		guessedLetters[guessedLetters.length] = letter;
@@ -91,6 +103,10 @@ var userGuessLogic = function(letter){
 	//Display a message if the letter was found in guessedLetters
 		console.log("You already guessed that letter.")
 	}
+}
+
+function endGame(){
+	
 }
 
 beginGame();

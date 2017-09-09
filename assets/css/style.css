@@ -1,0 +1,28 @@
+/* 
+Colors:
+yellow: #FFF84D;
+
+*/
+
+body {
+	background-color: black;
+}
+h1 {
+	color: #FFF84D;
+}
+.letter-display {
+	border: 5px solid #FFF84D;
+}
+.letter-display h1 {
+	letter-spacing: 10px;
+	margin: 40px 0 20px 0;
+}
+.alphabet {
+	margin-top: 40px;
+}
+.alphabet h1 {
+	line-height: 2;
+}
+.alphabet h1 span {
+	margin: 20px;
+}
