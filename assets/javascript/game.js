@@ -32,7 +32,7 @@
 //Global Variables
 //*********************************************
 //Array of available words
-var words = ['Obiwan Kenobi', 'Anakin Skywalker', 'Luke Skywalker'];
+var words = ['Obiwan Kenobi', 'Anakin Skywalker', 'Luke Skywalker', 'Wat Tambor', 'Jango Fett', 'Padme Amidala', 'Sebulba', 'Admiral Motti', 'Uncle Owen', 'Admiral Firmus Piett', 'Count Dooku', 'Admiral Ackbar', 'Ponda Baba', 'Jar Jar Binks', 'Darth Vader', 'Darth Maul', 'Emperor Palpatine', 'Mace Windu', 'Yoda', 'Boba Fett', 'General Grievous', 'Nute Gunray', 'Greedo', 'Han Solo', 'Chewbacca', 'R2 D2', 'C Three PO', 'Jabba the Hutt', 'Qui Gon Jinn', 'Princess Leia', 'Leia Skywalker', 'Leia Organa', 'Darth Sidious', 'Palpatine', 'Shmi Skywalker', 'Supreme Leader Snoke', 'Quinlan Vos' ];
 //Array that holds all unique letters in chosen word
 var uniqueLetters = [];
 //Array that holds the letters and order of the selected Word
@@ -40,7 +40,7 @@ var selectedWordArray = [];
 var playing = false;
 //Number of correct and incorrect guesses remaining.
 var correctGuesses;
-var incorrectGuesses = 5;
+var incorrectGuesses;
 //Percentage variables for lightsaber increases
 var obiwanPercentage = 0;
 var obiwanPercentageIncrease = 0;
@@ -70,7 +70,7 @@ function beginGame(){
 	//Resets game variables
 	uniqueLetters = [];
 	selectedWordArray = [];
-	incorrectGuesses = 5;
+	incorrectGuesses = 8;
 	guessedLetters = [];
 	vaderPercentage = 0;
 	obiwanPercentage = 0;
@@ -156,6 +156,7 @@ function displayCorrectLetter() {
 //Change the opacity of guessed letters in the alphabet display.
 function displayGuesses(letter) {
 	var newguess = document.getElementById(letter.toLowerCase());
+	console.log("newguess: " + newguess);
 	newguess.style.opacity = 1;
 }
 

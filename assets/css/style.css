@@ -31,7 +31,7 @@ header img:hover {
 	opacity: 0;
 	position: absolute;
     right: -80px;
-    top: 29px;
+    top: 12px;
     transition: 1s;
 }
 button {
