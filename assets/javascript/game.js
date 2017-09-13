@@ -32,7 +32,7 @@
 //Global Variables
 //*********************************************
 //Array of available words
-var words = ['Obiwan Kenobi', 'Anakin Skywalker', 'Luke Skywalker', 'Wat Tambor', 'Jango Fett', 'Padme Amidala', 'Sebulba', 'Admiral Motti', 'Uncle Owen', 'Admiral Firmus Piett', 'Count Dooku', 'Admiral Ackbar', 'Ponda Baba', 'Jar Jar Binks', 'Darth Vader', 'Darth Maul', 'Emperor Palpatine', 'Mace Windu', 'Yoda', 'Boba Fett', 'General Grievous', 'Nute Gunray', 'Greedo', 'Han Solo', 'Chewbacca', 'R2 D2', 'C Three PO', 'Jabba the Hutt', 'Qui Gon Jinn', 'Princess Leia', 'Leia Skywalker', 'Leia Organa', 'Darth Sidious', 'Palpatine', 'Shmi Skywalker', 'Supreme Leader Snoke', 'Quinlan Vos' ];
+var words = ['Obiwan Kenobi', 'Anakin Skywalker', 'Luke Skywalker', 'Wat Tambor', 'Jango Fett', 'Padme Amidala', 'Sebulba', 'Admiral Motti', 'Uncle Owen', 'Admiral Firmus Piett', 'Count Dooku', 'Admiral Ackbar', 'Ponda Baba', 'Jar Jar Binks', 'Darth Vader', 'Darth Maul', 'Emperor Palpatine', 'Mace Windu', 'Yoda', 'Boba Fett', 'General Grievous', 'Nute Gunray', 'Greedo', 'Han Solo', 'Chewbacca', 'R Two DTwo', 'C Three PO', 'Jabba the Hutt', 'Qui Gon Jinn', 'Princess Leia', 'Leia Skywalker', 'Leia Organa', 'Darth Sidious', 'Palpatine', 'Shmi Skywalker', 'Supreme Leader Snoke', 'Quinlan Vos' ];
 //Array that holds all unique letters in chosen word
 var uniqueLetters = [];
 //Array that holds the letters and order of the selected Word
