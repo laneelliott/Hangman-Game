@@ -30,7 +30,8 @@ header img:hover {
 .positioned-alert {
 	opacity: 0;
 	position: absolute;
-    right: -80px;
+	z-index: 99;
+    right: -60px;
     top: 12px;
     transition: 1s;
 }
@@ -178,9 +179,22 @@ html,body{
 	background:rgba(0,0,0,0.8);
 }
 
-/* My Code */
+/* My Code for Space Animations */
 canvas {
 	position: absolute;
+}
+
+/* Media Querys */
+@media screen and (max-width: 1500px) {
+    header img {
+    	width: 50px;
+    }
+    .alphabet h1 span {
+    	margin: 5px;
+    }
+    .plasma-outer {
+    	height: 500px;
+    }
 }
 
 
