@@ -55,6 +55,11 @@ var userGuess;
 //Array that holds all guessed letters so they can't be guessed twice.
 var guessedLetters = [];
 
+//Audio file variables
+var starwarsthemeSFX = document.createElement('audio');
+	starwarsthemeSFX.setAttribute("src", "assets/sounds/Star_Wars_552.mp3");
+var hansoloSFX = document.createElement('audio');
+	hansoloSFX.setAttribute("src", "assets/sounds/hansolo_badfeeling.wav");
 
 
 //Game Functions
@@ -67,6 +72,10 @@ function beginGame(){
 	selectedWordArray = [];
 	incorrectGuesses = 5;
 	guessedLetters = [];
+	vaderPercentage = 0;
+	obiwanPercentage = 0;
+	//Start Playing  the theme music
+	starwarsthemeSFX.play();
 	//The user begins playing the game.
 	playing = true;
 	//Select a random word from the words array
@@ -77,6 +86,13 @@ function beginGame(){
 	selectedWordArray = selectedWord.split("");
 	//Empty Current Word conatiner if any.
 	document.getElementById('letter-display-text').innerHTML = "";
+	//Reset Lightsaber graphics
+	$('.lightsaber-left .plasma-inner').css('display', 'none');
+	$('.lightsaber-left .plasma-inner').css('height', '0%');
+
+	$('.lightsaber-right .plasma-inner').css('display', 'none');
+	$('.lightsaber-right .plasma-inner').css('height', '0%');
+
 	//Reset Guesses
 	$('.alphabet h1 span').css('opacity', '0.2');
 	//Set Button Text to play again.
@@ -166,6 +182,14 @@ function correctOrIncorrect(letter){
 			wins++;
 			updateStats();
 			playing = false;
+			warpSpeed();
+			$('#game-display').fadeOut(1000);
+			$('header').fadeOut(1000);
+			setTimeout(function(){
+				warpSpeed()
+				$('#game-display').fadeIn(2000);
+				$('header').fadeIn(2000);
+			}, 5000);
 		}
 	} else {
 		incorrectGuesses -= 1;
@@ -179,6 +203,14 @@ function correctOrIncorrect(letter){
 			losses++;
 			updateStats();
 			playing = false;
+			warpSpeed();
+			$('#game-display').fadeOut(1000);
+			$('header').fadeOut(1000);
+			setTimeout(function(){
+				warpSpeed()
+				$('#game-display').fadeIn(2000);
+				$('header').fadeIn(2000);
+			}, 5000);
 		}
 	}
 	console.log('guesses remaining: ' + incorrectGuesses + '  letters remaining: ' + correctGuesses);
@@ -200,12 +232,19 @@ function increaseObiwan(){
 	obiwanPercentage = obiwanPercentage + obiwanPercentageIncrease;
 	$('.lightsaber-left .plasma-inner').css('display', 'block');
 	$('.lightsaber-left .plasma-inner').css('height', obiwanPercentage + '%');
+	
+	var lightsaberSFX1 = document.createElement('audio');
+	lightsaberSFX1.setAttribute("src", "assets/sounds/lightsaber_01.mp3");
+	lightsaberSFX1.play();
 }
 
 function increaseVader() {
 	vaderPercentage = vaderPercentage + vaderPercentageIncrease;
 	$('.lightsaber-right .plasma-inner').css('display', 'block');
 	$('.lightsaber-right .plasma-inner').css('height', vaderPercentage + '%');
+	var lightsaberSFX2 = document.createElement('audio');
+	lightsaberSFX2.setAttribute("src", "assets/sounds/lightsaber_02.wav");
+	lightsaberSFX2.play();
 }
 
 function endGame(){
@@ -214,7 +253,6 @@ function endGame(){
 
 //
 
-//beginGame();
 
 
 document.onkeyup = function(event) {
@@ -229,6 +267,109 @@ document.onkeyup = function(event) {
 	}
        
 };
+
+//User  clicks on Millenium Falcon
+//Show instructions and play Han Solo Sound
+$('header img').hover( function(){
+	$('.positioned-alert').css('opacity', 1);
+	hansoloSFX.play();
+}, function(){
+	$('.positioned-alert').css('opacity', 0);
+})
+
+
+
+//Star Background js from @nodws on codepen
+//based on an Example by @curran
+window.requestAnimFrame = (function(){   return  window.requestAnimationFrame})();
+var canvas = document.getElementById("space");
+var c = canvas.getContext("2d");
+
+var numStars = 1900;
+var radius = '0.'+Math.floor(Math.random() * 9) + 1  ;
+var focalLength = canvas.width *2;
+var warp = 0;
+var centerX, centerY;
+
+var stars = [], star;
+var i;
+
+var animate = true;
+
+initializeStars();
+
+function executeFrame(){
+  
+  if(animate)
+    requestAnimFrame(executeFrame);
+  moveStars();
+  drawStars();
+}
+
+function initializeStars(){
+  centerX = canvas.width / 2;
+  centerY = canvas.height / 2;
+  
+  stars = [];
+  for(i = 0; i < numStars; i++){
+    star = {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      z: Math.random() * canvas.width,
+      o: '0.'+Math.floor(Math.random() * 99) + 1
+    };
+    stars.push(star);
+  }
+}
+
+function moveStars(){
+  for(i = 0; i < numStars; i++){
+    star = stars[i];
+    star.z--;
+    
+    if(star.z <= 0){
+      star.z = canvas.width;
+    }
+  }
+}
+
+function drawStars(){
+  var pixelX, pixelY, pixelRadius;
+  
+  // Resize to the screen
+  if(canvas.width != window.innerWidth || canvas.width != window.innerWidth){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initializeStars();
+  }
+  if(warp==0)
+  {c.fillStyle = "rgba(0,10,20,1)";
+  c.fillRect(0,0, canvas.width, canvas.height);}
+  c.fillStyle = "rgba(209, 255, 255, "+radius+")";
+  for(i = 0; i < numStars; i++){
+    star = stars[i];
+    
+    pixelX = (star.x - centerX) * (focalLength / star.z);
+    pixelX += centerX;
+    pixelY = (star.y - centerY) * (focalLength / star.z);
+    pixelY += centerY;
+    pixelRadius = 1 * (focalLength / star.z);
+    
+    c.fillRect(pixelX, pixelY, pixelRadius, pixelRadius);
+    c.fillStyle = "rgba(209, 255, 255, "+star.o+")";
+    //c.fill();
+  }
+}
+
+function warpSpeed() {
+window.warp = window.warp==1 ? 0 : 1;
+window.c.clearRect(0, 0, window.canvas.width, window.canvas.height);
+executeFrame();
+}
+
+executeFrame();
+
+
 
 
 

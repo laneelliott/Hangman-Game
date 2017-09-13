@@ -11,7 +11,28 @@ h1, h3 {
 	color: #FFF84D;
 }
 header {
+	position: relative;
 	margin-bottom: 40px;
+}
+header img {
+	width: 100px;
+	margin-top: 5px;
+	opacity: 1;
+	transition: 1s;
+}
+header img:hover {
+	transform: rotate(45deg);
+	transition: 1s;
+}
+.alert-div {
+	position: relative;
+}
+.positioned-alert {
+	opacity: 0;
+	position: absolute;
+    right: -80px;
+    top: 29px;
+    transition: 1s;
 }
 button {
 	margin: 30px;
@@ -123,6 +144,44 @@ button {
 	border-radius: 7px 22px 7px 7px;
 }
 
+
+/* Star background from @nodws on codepen */
+html,body{
+	height:100%;
+	max-width:100%;
+	margin:0;
+	overflow:hidden;
+	background:rgba(0,10,20,1) url(http://i68.tinypic.com/2i7bc07.jpg) no-repeat;
+	background-size:cover;
+	image-rendering: pixelated; 
+	font-family:sans-serif
+}
+#space{
+	width:100%;
+}
+#warp{
+	position:absolute;
+	z-index:9;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:20px auto;
+	color:rgba(209, 255, 255,1);
+	border:2px solid;
+	padding:1em;
+	width:10em;
+	text-align:center;
+	font-weight:700;
+	font-size:1.2em;
+	display:inline-block;
+	text-decoration:none;
+	background:rgba(0,0,0,0.8);
+}
+
+/* My Code */
+canvas {
+	position: absolute;
+}
 
 
 
