@@ -40,6 +40,7 @@ var selectedWordArray = [];
 var playing = false;
 //Number of correct and incorrect guesses remaining.
 var correctGuesses;
+var correctGuessesStatic;
 var incorrectGuesses = 5;
 //Wins, Losses, and Games Played variables
 var wins = 0;
@@ -61,6 +62,7 @@ function beginGame(){
 	uniqueLetters = [];
 	selectedWordArray = [];
 	incorrectGuesses = 10;
+	incorrectGuessesStatic = incorrectGuesses;
 	guessedLetters = [];
 	//The user begins playing the game.
 	playing = true;
@@ -70,6 +72,12 @@ function beginGame(){
 	selectedWord = selectedWord.toUpperCase();
 	//Store selected word into an array
 	selectedWordArray = selectedWord.split("");
+	//Empty Current Word conatiner if any.
+	document.getElementById('letter-display-text').innerHTML = "";
+	//Reset Guesses
+	$('.alphabet h1 span').css('opacity', '0.2');
+	//Set Button Text to play again.
+	$('button').text('PLAY AGAIN');
 	//Store Unique Letters in array
 	for ( var i = 0; i < selectedWordArray.length; i++ ) {
 		//Populate the letter-display div
@@ -91,6 +99,7 @@ function beginGame(){
 	}
 	//Set number of correctGuesses  for winning purposes
 	correctGuesses = uniqueLetters.length;
+	correctGuessesStatic = correctGuesses;
 
 	//POPULATE VISUAL CUES BASED ON selectedWordArray.length
 }
@@ -140,25 +149,30 @@ function updateStats() {
 function correctOrIncorrect(letter){
 	if ( uniqueLetters.indexOf(letter) !== -1 ) {
 		correctGuesses -= 1;
+		console.log(uniqueLetters.indexOf(letter));
 		console.log(letter + " is correct.");
 		displayCorrectLetter();
 		displayGuesses(letter);
+		increaseObiwan();
 		console.log("after correct");
 		if (correctGuesses == 0){
 			playing = false;
 			console.log("congrats you won the game.");
 			wins++;
 			updateStats();
+			playing = false;
 		}
 	} else {
 		incorrectGuesses -= 1;
+		console.log(uniqueLetters.indexOf(letter));
 		console.log(letter + " is NOT correct.");
 		displayGuesses(letter);
+		increaseVader();
 		if (incorrectGuesses == 0){
 			console.log("sorry you lost the game.");
+			//Display the Play Again Display
 			losses++;
 			updateStats();
-
 			playing = false;
 		}
 	}
@@ -177,13 +191,21 @@ function userGuessLogic(letter){
 	}
 }
 
+function increaseObiwan(){
+	$('.lightsaber-left .plasma-inner').css('display', 'block');
+	var obiPercent = 100/correctGuessesStatic;
+	var obiRemaining = correctGuessesStatic - correctGuesses;
+	$('.lightsaber-left .plasma-inner').animate('height', (obiRemaining*obiPercent) + "px");
+
+}
+
 function endGame(){
 
 }
 
 //
 
-beginGame();
+//beginGame();
 
 
 document.onkeyup = function(event) {
@@ -198,6 +220,9 @@ document.onkeyup = function(event) {
 	}
        
 };
+
+
+
 
 
 

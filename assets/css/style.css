@@ -13,6 +13,13 @@ h1, h3 {
 header {
 	margin-bottom: 40px;
 }
+button {
+	margin: 30px;
+    background-color: black;
+    border: 4px solid #fff84D;
+    color: #fff84D;
+    padding: 10px 30px;
+}
 .letter-display {
 	border: 5px solid #FFF84D;
 	padding-top: 40px;
@@ -45,3 +52,75 @@ header {
 .score-container {
 	border: 5px solid #FFF84D;
 }
+
+/* Lightsaber Styles */
+
+/* Starting Style is invisible */
+.plasma-inner {
+	display: none;
+	height: 0%
+}
+
+.plasma-outer {
+	position: relative;
+	height: 600px;
+	margin: auto;
+	/*padding-left: 40%;*/
+}
+.hilt-outer {
+	position: relative;
+	margin: auto;
+	/*padding-left: 40%;*/
+}
+/* Left Lightsaber */
+.lightsaber-left .plasma-inner {
+	position: absolute;
+	bottom: -10px;
+	right: 85px;
+	height: 100%;
+	width: 10px;
+	margin: auto;
+	box-shadow: 0px 0px 10px 10px green;
+	background-color: white;
+	border-radius: 50px;
+}
+.lightsaber-left .hilt {
+	margin: auto;
+	position: absolute;
+	right: 80px;
+	z-index: 99;
+	width: 20px;
+	height: 80px;
+	background-color: #DBDBDB;
+	border-bottom: solid 4px grey;
+	border-top: solid 5px grey;
+	border-radius: 7px;
+}
+/* Right Lightsaber */
+.lightsaber-right .plasma-inner {
+	position: absolute;
+	bottom: -10px;
+	left: 85px;
+	height: 50%;
+	width: 10px;
+	margin: auto;
+	box-shadow: 0px 0px 10px 10px red;
+	background-color: white;
+	border-radius: 50px;
+}
+.lightsaber-right .hilt {
+	margin: auto;
+	position: absolute;
+	left: 80px;
+	z-index: 99;
+	width: 20px;
+	height: 80px;
+	background-color: #DBDBDB;
+	border-bottom: solid 4px grey;
+	border-top: solid 5px grey;
+	border-radius: 7px 22px 7px 7px;
+}
+
+
+
+
