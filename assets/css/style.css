@@ -58,7 +58,7 @@ button {
 /* Starting Style is invisible */
 .plasma-inner {
 	display: none;
-	height: 0%
+	height: 0%;
 }
 
 .plasma-outer {
@@ -83,6 +83,7 @@ button {
 	box-shadow: 0px 0px 10px 10px green;
 	background-color: white;
 	border-radius: 50px;
+	transition: .3s;
 }
 .lightsaber-left .hilt {
 	margin: auto;
@@ -107,6 +108,7 @@ button {
 	box-shadow: 0px 0px 10px 10px red;
 	background-color: white;
 	border-radius: 50px;
+	transition: .3s;
 }
 .lightsaber-right .hilt {
 	margin: auto;

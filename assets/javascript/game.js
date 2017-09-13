@@ -40,8 +40,12 @@ var selectedWordArray = [];
 var playing = false;
 //Number of correct and incorrect guesses remaining.
 var correctGuesses;
-var correctGuessesStatic;
 var incorrectGuesses = 5;
+//Percentage variables for lightsaber increases
+var obiwanPercentage = 0;
+var obiwanPercentageIncrease = 0;
+var vaderPercentage = 0;
+var vaderPercentageIncrease = 0;
 //Wins, Losses, and Games Played variables
 var wins = 0;
 var losses = 0;
@@ -61,8 +65,7 @@ function beginGame(){
 	//Resets game variables
 	uniqueLetters = [];
 	selectedWordArray = [];
-	incorrectGuesses = 10;
-	incorrectGuessesStatic = incorrectGuesses;
+	incorrectGuesses = 5;
 	guessedLetters = [];
 	//The user begins playing the game.
 	playing = true;
@@ -99,7 +102,9 @@ function beginGame(){
 	}
 	//Set number of correctGuesses  for winning purposes
 	correctGuesses = uniqueLetters.length;
-	correctGuessesStatic = correctGuesses;
+	//Set the Lightsaber Percentage Variables
+	obiwanPercentageIncrease = 100 / correctGuesses;
+	vaderPercentageIncrease = 100 / incorrectGuesses;
 
 	//POPULATE VISUAL CUES BASED ON selectedWordArray.length
 }
@@ -192,11 +197,15 @@ function userGuessLogic(letter){
 }
 
 function increaseObiwan(){
+	obiwanPercentage = obiwanPercentage + obiwanPercentageIncrease;
 	$('.lightsaber-left .plasma-inner').css('display', 'block');
-	var obiPercent = 100/correctGuessesStatic;
-	var obiRemaining = correctGuessesStatic - correctGuesses;
-	$('.lightsaber-left .plasma-inner').animate('height', (obiRemaining*obiPercent) + "px");
+	$('.lightsaber-left .plasma-inner').css('height', obiwanPercentage + '%');
+}
 
+function increaseVader() {
+	vaderPercentage = vaderPercentage + vaderPercentageIncrease;
+	$('.lightsaber-right .plasma-inner').css('display', 'block');
+	$('.lightsaber-right .plasma-inner').css('height', vaderPercentage + '%');
 }
 
 function endGame(){
